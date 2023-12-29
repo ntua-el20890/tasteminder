@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "164584563464",
+    "project_id": "tasteminder-9s8bma",
+    "storage_bucket": "tasteminder-9s8bma.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164584563464:android:3b324b0527aab48c7c42bd",
+        "android_client_info": {
+          "package_name": "com.mycompany.tasteminder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC6y3U-ezSpcXXAOFvOo797TCLuWsuGtY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

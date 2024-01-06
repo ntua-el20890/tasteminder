@@ -6,46 +6,50 @@ class SingUpModel extends FlutterFlowModel<SingUpWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  final textFieldKey4 = GlobalKey();
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? textFieldSelectedOption4;
-  late bool passwordVisibility;
-  String? Function(BuildContext, String?)? textController4Validator;
+  // State field(s) for UserNameSignUp widget.
+  FocusNode? userNameSignUpFocusNode;
+  TextEditingController? userNameSignUpController;
+  String? Function(BuildContext, String?)? userNameSignUpControllerValidator;
+  // State field(s) for EmailSignUp widget.
+  FocusNode? emailSignUpFocusNode;
+  TextEditingController? emailSignUpController;
+  String? Function(BuildContext, String?)? emailSignUpControllerValidator;
+  // State field(s) for PasswordSignUp widget.
+  final passwordSignUpKey = GlobalKey();
+  FocusNode? passwordSignUpFocusNode;
+  TextEditingController? passwordSignUpController;
+  String? passwordSignUpSelectedOption;
+  late bool passwordSignUpVisibility;
+  String? Function(BuildContext, String?)? passwordSignUpControllerValidator;
+  // State field(s) for ConfirmPasswordSignUp widget.
+  final confirmPasswordSignUpKey = GlobalKey();
+  FocusNode? confirmPasswordSignUpFocusNode;
+  TextEditingController? confirmPasswordSignUpController;
+  String? confirmPasswordSignUpSelectedOption;
+  late bool confirmPasswordSignUpVisibility;
+  String? Function(BuildContext, String?)?
+      confirmPasswordSignUpControllerValidator;
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
-    passwordVisibility = false;
+    passwordSignUpVisibility = false;
+    confirmPasswordSignUpVisibility = false;
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    userNameSignUpFocusNode?.dispose();
+    userNameSignUpController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    emailSignUpFocusNode?.dispose();
+    emailSignUpController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    passwordSignUpFocusNode?.dispose();
 
-    textFieldFocusNode4?.dispose();
+    confirmPasswordSignUpFocusNode?.dispose();
   }
 
   /// Action blocks are added here.

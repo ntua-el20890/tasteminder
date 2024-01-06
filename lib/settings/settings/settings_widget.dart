@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -50,72 +51,81 @@ class _SettingsWidgetState extends State<SettingsWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Stack(
-                children: [
-                  Align(
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.safePop();
-                        },
-                        child: Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Stack(
+                  children: [
+                    Align(
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.safePop();
+                          },
+                          child: Container(
+                            width: 40.0,
+                            height: 40.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.arrow_back,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                      child: Text(
-                        'Settings',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w800,
-                            ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                        child: Text(
+                          'Settings',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                      child: InkWell(
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('EditProfile');
+                          context.pushNamed(
+                            'EditProfile',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.rightToLeft,
+                                duration: Duration(milliseconds: 350),
+                              ),
+                            },
+                          );
                         },
                         child: Stack(
                           children: [
@@ -123,7 +133,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
+                                    15.0, 15.0, 0.0, 10.0),
                                 child: Text(
                                   'Edit Profile',
                                   style:
@@ -135,7 +145,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               alignment: const AlignmentDirectional(1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 25.0, 0.0),
+                                    0.0, 15.0, 25.0, 10.0),
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   color: FlutterFlowTheme.of(context)
@@ -147,21 +157,26 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           ],
                         ),
                       ),
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 5.0),
-                      child: InkWell(
+                      Divider(
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                      InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('Notifications');
+                          context.pushNamed(
+                            'Notifications',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.rightToLeft,
+                                duration: Duration(milliseconds: 350),
+                              ),
+                            },
+                          );
                         },
                         child: Stack(
                           children: [
@@ -169,7 +184,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
+                                    15.0, 15.0, 0.0, 10.0),
                                 child: Text(
                                   'Notifications',
                                   style:
@@ -181,7 +196,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               alignment: const AlignmentDirectional(1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 25.0, 0.0),
+                                    0.0, 15.0, 25.0, 10.0),
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   color: FlutterFlowTheme.of(context)
@@ -193,21 +208,26 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           ],
                         ),
                       ),
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 5.0),
-                      child: InkWell(
+                      Divider(
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                      InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('Terms_Conditions');
+                          context.pushNamed(
+                            'Terms_Conditions',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.rightToLeft,
+                                duration: Duration(milliseconds: 350),
+                              ),
+                            },
+                          );
                         },
                         child: Stack(
                           children: [
@@ -215,7 +235,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
+                                    15.0, 15.0, 0.0, 10.0),
                                 child: Text(
                                   'Terms & Conditions',
                                   style:
@@ -227,7 +247,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               alignment: const AlignmentDirectional(1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 25.0, 0.0),
+                                    0.0, 15.0, 25.0, 10.0),
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   color: FlutterFlowTheme.of(context)
@@ -239,57 +259,26 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           ],
                         ),
                       ),
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 5.0),
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Contact Us',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 25.0, 0.0),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 20.0,
-                              ),
-                            ),
-                          ),
-                        ],
+                      Divider(
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).alternate,
                       ),
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 5.0),
-                      child: InkWell(
+                      InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('SubmitABugReport');
+                          context.pushNamed(
+                            'ContactUs',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.rightToLeft,
+                                duration: Duration(milliseconds: 350),
+                              ),
+                            },
+                          );
                         },
                         child: Stack(
                           children: [
@@ -297,7 +286,58 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 0.0, 0.0),
+                                    15.0, 15.0, 0.0, 10.0),
+                                child: Text(
+                                  'Contact Us',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(1.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 25.0, 10.0),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 20.0,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'SubmitABugReport',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.rightToLeft,
+                                duration: Duration(milliseconds: 350),
+                              ),
+                            },
+                          );
+                        },
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 15.0, 0.0, 10.0),
                                 child: Text(
                                   'Report a Bug',
                                   style:
@@ -309,7 +349,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               alignment: const AlignmentDirectional(1.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 25.0, 0.0),
+                                    0.0, 15.0, 25.0, 10.0),
                                 child: Icon(
                                   Icons.arrow_forward_ios,
                                   color: FlutterFlowTheme.of(context)
@@ -321,51 +361,61 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           ],
                         ),
                       ),
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 5.0),
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Log Out',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 25.0, 0.0),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 20.0,
-                              ),
-                            ),
-                          ),
-                        ],
+                      Divider(
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).alternate,
                       ),
-                    ),
-                  ],
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          GoRouter.of(context).prepareAuthEvent();
+                          await authManager.signOut();
+                          GoRouter.of(context).clearRedirectLocation();
+
+                          context.goNamedAuth('Welcome', context.mounted);
+                        },
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 15.0, 0.0, 10.0),
+                                child: Text(
+                                  'Log Out',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(1.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 25.0, 10.0),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 20.0,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Divider(
-                thickness: 1.0,
-                color: FlutterFlowTheme.of(context).alternate,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

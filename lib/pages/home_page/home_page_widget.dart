@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
@@ -53,8 +54,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
-          top: true,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                FlutterFlowTheme.of(context).primaryBackground,
+                FlutterFlowTheme.of(context).primaryBackground
+              ],
+              stops: const [0.0, 1.0],
+              begin: const AlignmentDirectional(0.0, -1.0),
+              end: const AlignmentDirectional(0, 1.0),
+            ),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -76,11 +87,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           30.0, 10.0, 30.0, 10.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          'https://images.unsplash.com/photo-1545505567-7327366a634d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw2fHxmaXJld29ya3N8ZW58MHx8fHwxNzAzODE4NDcxfDA&ixlib=rb-4.0.3&q=80&w=1080',
+                        child: SvgPicture.asset(
+                          'assets/images/Group_25.svg',
                           width: 300.0,
                           height: 200.0,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -88,7 +99,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 20.0, 12.0, 20.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 20.0, 15.0, 20.0),
                 child: TextFormField(
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
@@ -103,28 +114,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         color: Color(0xFFF9DBC3),
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
                         color: Color(0xFFEF8C40),
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).error,
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).error,
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     filled: true,
                     fillColor: const Color(0xFFF9DBC3),
@@ -185,7 +196,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: MediaQuery.sizeOf(context).height * 0.2,
+                  height: MediaQuery.sizeOf(context).height * 0.26,
                   decoration: BoxDecoration(
                     color: const Color(0xFFF9DBC3),
                     borderRadius: BorderRadius.circular(24.0),
@@ -211,7 +222,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 20.0),
+                              0.0, 10.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,

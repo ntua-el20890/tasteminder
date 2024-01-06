@@ -59,7 +59,7 @@ class _MapPageWidgetState extends State<MapPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 5.0, 12.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 50.0, 12.0, 5.0),
                 child: TextFormField(
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
@@ -74,28 +74,28 @@ class _MapPageWidgetState extends State<MapPageWidget> {
                         color: Color(0xFFF9DBC3),
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
                         color: Color(0xFFEF8C40),
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).error,
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).error,
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     filled: true,
                     fillColor: const Color(0xFFF9DBC3),

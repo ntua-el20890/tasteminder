@@ -96,13 +96,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const CollectionPageWidget(),
         ),
         FFRoute(
-          name: 'NewEntry',
-          path: '/newEntry',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'NewEntry')
-              : const NewEntryWidget(),
-        ),
-        FFRoute(
           name: 'MapPage',
           path: '/mapPage',
           builder: (context, params) => params.isEmpty
@@ -192,11 +185,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const NewPasswordWidget(),
         ),
         FFRoute(
-          name: 'entry',
+          name: 'Entry',
           path: '/entry',
-          builder: (context, params) => const EntryWidget(),
+          builder: (context, params) => EntryWidget(
+            entryRecieved: params.getParam('entryRecieved',
+                ParamType.DocumentReference, false, ['user', 'entry']),
+          ),
+        ),
+        FFRoute(
+          name: 'page',
+          path: '/page',
+          builder: (context, params) => const PageWidget(),
+        ),
+        FFRoute(
+          name: 'Levels',
+          path: '/levels',
+          builder: (context, params) => const LevelsWidget(),
+        ),
+        FFRoute(
+          name: 'Gamification',
+          path: '/gamification',
+          builder: (context, params) => const GamificationWidget(),
+        ),
+        FFRoute(
+          name: 'NewEntry',
+          path: '/newEntry',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'NewEntry')
+              : const NewEntryWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {
@@ -377,7 +396,7 @@ class FFRoute {
               ? Container(
                   color: FlutterFlowTheme.of(context).tertiary,
                   child: Image.asset(
-                    'assets/images/Screenshot_2023-11-08_235650.png',
+                    'assets/images/Group_25.png',
                     fit: BoxFit.contain,
                   ),
                 )

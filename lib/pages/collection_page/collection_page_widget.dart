@@ -1,8 +1,8 @@
-import '/components/entrycard_widget.dart';
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'collection_page_model.dart';
@@ -60,7 +60,7 @@ class _CollectionPageWidgetState extends State<CollectionPageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 45.0, 15.0, 12.0),
                 child: TextFormField(
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
@@ -75,28 +75,28 @@ class _CollectionPageWidgetState extends State<CollectionPageWidget> {
                         color: Color(0xFFF9DBC3),
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
                         color: Color(0xFFEF8C40),
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).error,
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).error,
                         width: 3.0,
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                     filled: true,
                     fillColor: const Color(0xFFF9DBC3),
@@ -113,7 +113,7 @@ class _CollectionPageWidgetState extends State<CollectionPageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -186,30 +186,111 @@ class _CollectionPageWidgetState extends State<CollectionPageWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
-                  child: Builder(
-                    builder: (context) {
-                      final test = List.generate(
-                          random_data.randomInteger(5, 10),
-                          (index) => random_data.randomImageUrl(
-                                0,
-                                0,
-                              )).toList();
+                  padding: const EdgeInsets.all(15.0),
+                  child: StreamBuilder<List<EntryRecord>>(
+                    stream: queryEntryRecord(
+                      parent: currentUserReference,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<EntryRecord> gridViewEntryRecordList =
+                          snapshot.data!;
                       return GridView.builder(
                         padding: EdgeInsets.zero,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          crossAxisSpacing: 5.0,
-                          mainAxisSpacing: 5.0,
+                          crossAxisSpacing: 10.0,
+                          mainAxisSpacing: 10.0,
                           childAspectRatio: 1.0,
                         ),
                         scrollDirection: Axis.vertical,
-                        itemCount: test.length,
-                        itemBuilder: (context, testIndex) {
-                          final testItem = test[testIndex];
-                          return EntrycardWidget(
-                            key: Key('Key0kn_${testIndex}_of_${test.length}'),
+                        itemCount: gridViewEntryRecordList.length,
+                        itemBuilder: (context, gridViewIndex) {
+                          final gridViewEntryRecord =
+                              gridViewEntryRecordList[gridViewIndex];
+                          return InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'Entry',
+                                queryParameters: {
+                                  'entryRecieved': serializeParam(
+                                    gridViewEntryRecord.reference,
+                                    ParamType.DocumentReference,
+                                  ),
+                                }.withoutNulls,
+                              );
+                            },
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              elevation: 0.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                      bottomLeft: Radius.circular(0.0),
+                                      bottomRight: Radius.circular(0.0),
+                                      topLeft: Radius.circular(0.0),
+                                      topRight: Radius.circular(0.0),
+                                    ),
+                                    child: Image.network(
+                                      gridViewEntryRecord.image.isNotEmpty
+                                          ? gridViewEntryRecord.image.first
+                                          : 'https://pm1.aminoapps.com/6493/523caa97f0e93e86a127b572547a5eeaacae0e77_hq.jpg',
+                                      width: 300.0,
+                                      height: 127.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiary,
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: Text(
+                                          gridViewEntryRecord
+                                                          .creationName !=
+                                                      ''
+                                              ? gridViewEntryRecord.creationName
+                                              : 'Unnamed Creation',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
                         },
                       );

@@ -6,22 +6,32 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl1 = '';
+
+  bool isDataUploading2 = false;
+  FFUploadedFile uploadedLocalFile2 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl2 = '';
+
+  // State field(s) for DisplayNameUpdate widget.
+  FocusNode? displayNameUpdateFocusNode;
+  TextEditingController? displayNameUpdateController;
+  String? Function(BuildContext, String?)? displayNameUpdateControllerValidator;
+  // State field(s) for EmailUpdate widget.
+  FocusNode? emailUpdateFocusNode;
+  TextEditingController? emailUpdateController;
+  String? Function(BuildContext, String?)? emailUpdateControllerValidator;
+  // State field(s) for PasswordUpdat widget.
+  FocusNode? passwordUpdatFocusNode;
+  TextEditingController? passwordUpdatController;
+  String? Function(BuildContext, String?)? passwordUpdatControllerValidator;
+  // State field(s) for DescriptionUpdate widget.
+  FocusNode? descriptionUpdateFocusNode;
+  TextEditingController? descriptionUpdateController;
+  String? Function(BuildContext, String?)? descriptionUpdateControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -31,17 +41,17 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    displayNameUpdateFocusNode?.dispose();
+    displayNameUpdateController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    emailUpdateFocusNode?.dispose();
+    emailUpdateController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    passwordUpdatFocusNode?.dispose();
+    passwordUpdatController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    descriptionUpdateFocusNode?.dispose();
+    descriptionUpdateController?.dispose();
   }
 
   /// Action blocks are added here.

@@ -53,17 +53,16 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
-
 	<key>NSCameraUsageDescription</key>
-    <string>Allow Tasteminder to access your camera to take photos and videos</string>
+    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>This app requires permissions to record audio.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>In order to upload data, this app requires permission to access the photo library.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>AllowTasteminder to access your location to provide location-based services.</string>
-	<key>NSMicrophoneUsageDescription</key>
-    <string>AllowTasteminder to access your microphone to record audio.</string>
 	<key>PermissionGroupNotification</key>
     <string>AllowTasteminder to send you notifications to stay up-to-date with the latest information</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>AllowTasteminder to access your photo library to select and upload photos</string>
 
 
 	<key>UILaunchStoryboardName</key>

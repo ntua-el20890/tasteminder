@@ -6,7 +6,6 @@ import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
 
 import 'backend/firebase/firebase_config.dart';
-import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'flutter_flow/nav/nav.dart';
@@ -16,8 +15,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
   await initFirebase();
-
-  await FlutterFlowTheme.initialize();
 
   runApp(const MyApp());
 }
@@ -35,7 +32,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
-  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+  ThemeMode _themeMode = ThemeMode.system;
 
   late Stream<BaseAuthUser> userStream;
 
@@ -72,7 +69,6 @@ class _MyAppState extends State<MyApp> {
 
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
-        FlutterFlowTheme.saveThemeMode(mode);
       });
 
   @override
@@ -103,23 +99,6 @@ class _MyAppState extends State<MyApp> {
               return const Color(0xffef8c41);
             }
             return const Color(0xffef8c41);
-          }),
-        ),
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        scrollbarTheme: ScrollbarThemeData(
-          thumbVisibility: MaterialStateProperty.all(false),
-          trackVisibility: MaterialStateProperty.all(false),
-          interactive: false,
-          thumbColor: MaterialStateProperty.resolveWith((states) {
-            if (states.contains(MaterialState.dragged)) {
-              return const Color(0xff4b39ef);
-            }
-            if (states.contains(MaterialState.hovered)) {
-              return const Color(0xff4b39ef);
-            }
-            return const Color(0xff4b39ef);
           }),
         ),
       ),
@@ -210,7 +189,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.add_circle,
               size: 24.0,
             ),
-            label: 'new entry',
+            label: 'New Entry',
             tooltip: '',
           ),
           BottomNavigationBarItem(

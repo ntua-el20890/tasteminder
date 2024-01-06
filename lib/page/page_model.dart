@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'entry_widget.dart' show EntryWidget;
+import 'page_widget.dart' show PageWidget;
 import 'package:flutter/material.dart';
 
-class EntryModel extends FlutterFlowModel<EntryWidget> {
+class PageModel extends FlutterFlowModel<PageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

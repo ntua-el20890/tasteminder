@@ -6,32 +6,32 @@ class SingInModel extends FlutterFlowModel<SingInWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  final textFieldKey2 = GlobalKey();
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? textFieldSelectedOption2;
-  late bool passwordVisibility;
-  String? Function(BuildContext, String?)? textController2Validator;
+  // State field(s) for EmailSignIn widget.
+  FocusNode? emailSignInFocusNode;
+  TextEditingController? emailSignInController;
+  String? Function(BuildContext, String?)? emailSignInControllerValidator;
+  // State field(s) for PasswordSignIn widget.
+  final passwordSignInKey = GlobalKey();
+  FocusNode? passwordSignInFocusNode;
+  TextEditingController? passwordSignInController;
+  String? passwordSignInSelectedOption;
+  late bool passwordSignInVisibility;
+  String? Function(BuildContext, String?)? passwordSignInControllerValidator;
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
-    passwordVisibility = false;
+    passwordSignInVisibility = false;
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    emailSignInFocusNode?.dispose();
+    emailSignInController?.dispose();
 
-    textFieldFocusNode2?.dispose();
+    passwordSignInFocusNode?.dispose();
   }
 
   /// Action blocks are added here.

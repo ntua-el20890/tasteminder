@@ -1,9 +1,11 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'submit_a_bug_report_model.dart';
 export 'submit_a_bug_report_model.dart';
 
@@ -61,75 +63,75 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Stack(
-                    children: [
-                      Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              15.0, 0.0, 0.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.safePop();
-                            },
-                            child: Container(
-                              width: 40.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                Icons.arrow_back,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Stack(
+                      children: [
+                        Align(
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                15.0, 0.0, 0.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.safePop();
+                              },
+                              child: Container(
+                                width: 40.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 8.0),
-                          child: Text(
-                            'Submit a Bug Report',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w800,
-                                ),
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 8.0),
+                            child: Text(
+                              'Submit a Bug Report',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 15.0, 10.0, 0.0),
-                          child: SizedBox(
-                            width: MediaQuery.sizeOf(context).width * 0.95,
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                15.0, 15.0, 15.0, 0.0),
                             child: TextFormField(
                               controller: _model.textController1,
                               focusNode: _model.textFieldFocusNode1,
@@ -169,28 +171,28 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                                         .primaryText,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).primary,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 filled: true,
                                 fillColor:
@@ -216,12 +218,9 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                                   .asValidator(context),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 15.0, 10.0, 0.0),
-                          child: SizedBox(
-                            width: MediaQuery.sizeOf(context).width * 0.95,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                15.0, 15.0, 15.0, 0.0),
                             child: TextFormField(
                               controller: _model.textController2,
                               focusNode: _model.textFieldFocusNode2,
@@ -261,28 +260,28 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                                         .primaryText,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).primary,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 filled: true,
                                 fillColor:
@@ -308,72 +307,71 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                                   .asValidator(context),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 15.0, 10.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.textController3,
-                            focusNode: _model.textFieldFocusNode3,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: 'Issue Description',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 10.0,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                15.0, 15.0, 15.0, 0.0),
+                            child: TextFormField(
+                              controller: _model.textController3,
+                              focusNode: _model.textFieldFocusNode3,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Issue Description',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 10.0,
+                                    ),
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).labelMedium,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    width: 1.0,
                                   ),
-                              hintStyle:
-                                  FlutterFlowTheme.of(context).labelMedium,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  width: 1.0,
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 1.0,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                borderRadius: BorderRadius.circular(0.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                borderRadius: BorderRadius.circular(0.0),
+                                filled: true,
+                                fillColor:
+                                    FlutterFlowTheme.of(context).alternate,
                               ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context).alternate,
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              textAlign: TextAlign.start,
+                              maxLines: 10,
+                              minLines: 4,
+                              validator: _model.textController3Validator
+                                  .asValidator(context),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                            maxLines: 10,
-                            minLines: 4,
-                            validator: _model.textController3Validator
-                                .asValidator(context),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
-                child: Column(
+                  ],
+                ),
+                Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
@@ -418,16 +416,27 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          15.0, 20.0, 15.0, 50.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          await launchUrl(Uri(
+                              scheme: 'mailto',
+                              path: 'stavroschristodoulakis@hotmail.com',
+                              query: {
+                                'subject': _model.textController2.text,
+                                'body':
+                                    '${_model.textController1.text}$currentUserDisplayName${_model.textController3.text}$currentUserUid${_model.switchValue?.toString()}From Contact Us Page',
+                              }
+                                  .entries
+                                  .map((MapEntry<String, String> e) =>
+                                      '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                                  .join('&')));
                         },
                         text: 'SEND',
                         options: FFButtonOptions(
                           width: MediaQuery.sizeOf(context).width * 0.95,
-                          height: 40.0,
+                          height: 50.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -449,8 +458,8 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                     ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

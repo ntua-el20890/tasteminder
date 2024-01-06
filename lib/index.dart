@@ -2,7 +2,6 @@
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/collection_page/collection_page_widget.dart'
     show CollectionPageWidget;
-export '/pages/new_entry/new_entry_widget.dart' show NewEntryWidget;
 export '/pages/map_page/map_page_widget.dart' show MapPageWidget;
 export '/pages/profile_page/profile_page_widget.dart' show ProfilePageWidget;
 export '/filters/filters_widget.dart' show FiltersWidget;
@@ -21,9 +20,14 @@ export '/log_in/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/log_in/code_verification/code_verification_widget.dart'
     show CodeVerificationWidget;
-export '/log_in/password_update/password_update_widget.dart'
+export '/settings/password_update/password_update_widget.dart'
     show PasswordUpdateWidget;
 export '/log_in/logo/logo_widget.dart' show LogoWidget;
 export '/settings/contact_us/contact_us_widget.dart' show ContactUsWidget;
 export '/log_in/new_password/new_password_widget.dart' show NewPasswordWidget;
-export '/entry/entry_widget.dart' show EntryWidget;
+export '/pages/entry/entry_widget.dart' show EntryWidget;
+export '/page/page_widget.dart' show PageWidget;
+export '/gamification/levels/levels_widget.dart' show LevelsWidget;
+export '/gamification/gamification/gamification_widget.dart'
+    show GamificationWidget;
+export '/pages/new_entry/new_entry_widget.dart' show NewEntryWidget;

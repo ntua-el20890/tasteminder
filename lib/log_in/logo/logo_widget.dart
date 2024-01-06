@@ -53,11 +53,23 @@ class _LogoWidgetState extends State<LogoWidget> {
           child: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
             child: Container(
-              width: 250.0,
-              height: 250.0,
+              width: 300.0,
+              height: 300.0,
               decoration: const BoxDecoration(
                 color: Color(0xFFF8B887),
                 shape: BoxShape.circle,
+              ),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(50.0, 45.0, 45.0, 45.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/__2024-01-04_103446.png',
+                    width: 300.0,
+                    height: 200.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           ),

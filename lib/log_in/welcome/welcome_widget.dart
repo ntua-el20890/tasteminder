@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'welcome_model.dart';
 export 'welcome_model.dart';
 
@@ -58,24 +59,35 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
               children: [
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                    child: Text(
+                      'Welcome to Tasteminder',
+                      style:
+                          FlutterFlowTheme.of(context).headlineLarge.override(
+                                fontFamily: 'Outfit',
+                                fontSize: 30.0,
+                              ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Text(
                     'Let\'s Get Started',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    style: FlutterFlowTheme.of(context).headlineMedium,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(30.0, 25.0, 0.0, 0.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      'https://thumbs.dreamstime.com/b/stack-pancakes-blueberry-honey-fresh-54784735.jpg',
-                      width: MediaQuery.sizeOf(context).width * 0.8,
+                    child: SvgPicture.asset(
+                      'assets/images/Group_25.svg',
+                      width: MediaQuery.sizeOf(context).width * 0.7,
                       height: MediaQuery.sizeOf(context).height * 0.4,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),

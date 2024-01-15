@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'submit_a_bug_report_model.dart';
 export 'submit_a_bug_report_model.dart';
@@ -54,6 +55,8 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -87,18 +90,24 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                               onTap: () async {
                                 context.safePop();
                               },
-                              child: Container(
-                                width: 40.0,
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
+                              child: Material(
+                                color: Colors.transparent,
+                                elevation: 4.0,
+                                shape: const CircleBorder(),
+                                child: Container(
+                                  width: 42.0,
+                                  height: 42.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    Icons.arrow_back,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
                                 ),
                               ),
                             ),
@@ -140,7 +149,6 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                                 const Duration(milliseconds: 2000),
                                 () => setState(() {}),
                               ),
-                              autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Name',
@@ -229,7 +237,6 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                                 const Duration(milliseconds: 2000),
                                 () => setState(() {}),
                               ),
-                              autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Subject',
@@ -313,7 +320,6 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                             child: TextFormField(
                               controller: _model.textController3,
                               focusNode: _model.textFieldFocusNode3,
-                              autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Issue Description',
@@ -404,7 +410,7 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                                 activeColor:
                                     FlutterFlowTheme.of(context).primary,
                                 activeTrackColor:
-                                    FlutterFlowTheme.of(context).accent1,
+                                    FlutterFlowTheme.of(context).alternate,
                                 inactiveTrackColor:
                                     FlutterFlowTheme.of(context).alternate,
                                 inactiveThumbColor:
@@ -447,7 +453,7 @@ class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {
                                     fontFamily: 'Readex Pro',
                                     color: Colors.white,
                                   ),
-                          elevation: 0.0,
+                          elevation: 2.0,
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,

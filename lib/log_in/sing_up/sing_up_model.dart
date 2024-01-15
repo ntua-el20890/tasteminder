@@ -3,6 +3,10 @@ import 'sing_up_widget.dart' show SingUpWidget;
 import 'package:flutter/material.dart';
 
 class SingUpModel extends FlutterFlowModel<SingUpWidget> {
+  ///  Local state fields for this page.
+
+  String profilepic = 'false';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -15,17 +19,13 @@ class SingUpModel extends FlutterFlowModel<SingUpWidget> {
   TextEditingController? emailSignUpController;
   String? Function(BuildContext, String?)? emailSignUpControllerValidator;
   // State field(s) for PasswordSignUp widget.
-  final passwordSignUpKey = GlobalKey();
   FocusNode? passwordSignUpFocusNode;
   TextEditingController? passwordSignUpController;
-  String? passwordSignUpSelectedOption;
   late bool passwordSignUpVisibility;
   String? Function(BuildContext, String?)? passwordSignUpControllerValidator;
   // State field(s) for ConfirmPasswordSignUp widget.
-  final confirmPasswordSignUpKey = GlobalKey();
   FocusNode? confirmPasswordSignUpFocusNode;
   TextEditingController? confirmPasswordSignUpController;
-  String? confirmPasswordSignUpSelectedOption;
   late bool confirmPasswordSignUpVisibility;
   String? Function(BuildContext, String?)?
       confirmPasswordSignUpControllerValidator;
@@ -48,8 +48,10 @@ class SingUpModel extends FlutterFlowModel<SingUpWidget> {
     emailSignUpController?.dispose();
 
     passwordSignUpFocusNode?.dispose();
+    passwordSignUpController?.dispose();
 
     confirmPasswordSignUpFocusNode?.dispose();
+    confirmPasswordSignUpController?.dispose();
   }
 
   /// Action blocks are added here.

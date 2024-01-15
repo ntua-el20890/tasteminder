@@ -24,10 +24,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   FocusNode? emailUpdateFocusNode;
   TextEditingController? emailUpdateController;
   String? Function(BuildContext, String?)? emailUpdateControllerValidator;
-  // State field(s) for PasswordUpdat widget.
-  FocusNode? passwordUpdatFocusNode;
-  TextEditingController? passwordUpdatController;
-  String? Function(BuildContext, String?)? passwordUpdatControllerValidator;
   // State field(s) for DescriptionUpdate widget.
   FocusNode? descriptionUpdateFocusNode;
   TextEditingController? descriptionUpdateController;
@@ -46,9 +42,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
     emailUpdateFocusNode?.dispose();
     emailUpdateController?.dispose();
-
-    passwordUpdatFocusNode?.dispose();
-    passwordUpdatController?.dispose();
 
     descriptionUpdateFocusNode?.dispose();
     descriptionUpdateController?.dispose();

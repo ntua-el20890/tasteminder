@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'levels_model.dart';
 export 'levels_model.dart';
 
@@ -41,6 +42,8 @@ class _LevelsWidgetState extends State<LevelsWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -71,18 +74,23 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                             onTap: () async {
                               context.safePop();
                             },
-                            child: Container(
-                              width: 40.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                Icons.arrow_back,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
+                            child: Material(
+                              color: Colors.transparent,
+                              elevation: 4.0,
+                              shape: const CircleBorder(),
+                              child: Container(
+                                width: 42.0,
+                                height: 42.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
                               ),
                             ),
                           ),
@@ -117,6 +125,99 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               15.0, 0.0, 15.0, 0.0),
+                          child: Container(
+                            width: MediaQuery.sizeOf(context).width * 0.95,
+                            height: 70.0,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFAE9E8C),
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 5.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 0.0),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(-1.0, -1.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Level 0:',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            'Begginer Foodie',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(-1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Start: 0 XP',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 10.0, 0.0),
+                                          child: Text(
+                                            'End: 20 XP',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              15.0, 15.0, 15.0, 0.0),
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * 0.95,
                             height: 70.0,
@@ -182,7 +283,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 0 Xp',
+                                              'Start: 20 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -194,7 +295,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 500 Xp',
+                                            'End: 50 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -275,7 +376,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 500 Xp',
+                                              'Start: 50 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -287,7 +388,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 1.500 Xp',
+                                            'End: 100 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -368,7 +469,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 1.500 Xp',
+                                              'Start: 100 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -380,7 +481,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 3.000 Xp',
+                                            'End: 150 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -461,7 +562,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 3.000 Xp',
+                                              'Start: 150 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -473,7 +574,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 5.000 Xp',
+                                            'End: 220 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -554,7 +655,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 5.000 Xp',
+                                              'Start: 220 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -566,7 +667,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 7.500 Xp',
+                                            'End: 300 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -647,7 +748,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 7.500 Xp',
+                                              'Start: 300 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -659,7 +760,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 10.500 Xp',
+                                            'End: 400 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -740,7 +841,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 10.500 Xp',
+                                              'Start: 400 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -752,7 +853,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 14.000 Xp',
+                                            'End: 500 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -833,7 +934,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 14.000 Xp',
+                                              'Start: 500 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -845,7 +946,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 18.000 Xp',
+                                            'End: 600 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -926,7 +1027,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 18.000 Xp',
+                                              'Start: 600 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -938,7 +1039,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 22.500 Xp',
+                                            'End: 1000 XP',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
@@ -1019,7 +1120,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              'Start: 22.500 Xp',
+                                              'Start: 1000 XP',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
@@ -1031,7 +1132,7 @@ class _LevelsWidgetState extends State<LevelsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
-                                            'End: 27.500 Xp',
+                                            'To infinity!',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),

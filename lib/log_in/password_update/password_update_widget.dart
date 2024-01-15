@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'password_update_model.dart';
 export 'password_update_model.dart';
 
@@ -42,6 +43,8 @@ class _PasswordUpdateWidgetState extends State<PasswordUpdateWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -72,17 +75,23 @@ class _PasswordUpdateWidgetState extends State<PasswordUpdateWidget> {
                           onTap: () async {
                             context.safePop();
                           },
-                          child: Container(
-                            width: 40.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                          child: Material(
+                            color: Colors.transparent,
+                            elevation: 4.0,
+                            shape: const CircleBorder(),
+                            child: Container(
+                              width: 42.0,
+                              height: 42.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.arrow_back,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
                             ),
                           ),
                         ),
@@ -160,7 +169,7 @@ class _PasswordUpdateWidgetState extends State<PasswordUpdateWidget> {
                                       fontFamily: 'Readex Pro',
                                       color: Colors.white,
                                     ),
-                                elevation: 0.0,
+                                elevation: 2.0,
                                 borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,

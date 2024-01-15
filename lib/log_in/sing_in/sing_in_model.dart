@@ -11,10 +11,8 @@ class SingInModel extends FlutterFlowModel<SingInWidget> {
   TextEditingController? emailSignInController;
   String? Function(BuildContext, String?)? emailSignInControllerValidator;
   // State field(s) for PasswordSignIn widget.
-  final passwordSignInKey = GlobalKey();
   FocusNode? passwordSignInFocusNode;
   TextEditingController? passwordSignInController;
-  String? passwordSignInSelectedOption;
   late bool passwordSignInVisibility;
   String? Function(BuildContext, String?)? passwordSignInControllerValidator;
 
@@ -32,6 +30,7 @@ class SingInModel extends FlutterFlowModel<SingInWidget> {
     emailSignInController?.dispose();
 
     passwordSignInFocusNode?.dispose();
+    passwordSignInController?.dispose();
   }
 
   /// Action blocks are added here.

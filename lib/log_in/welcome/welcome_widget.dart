@@ -1,9 +1,12 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'welcome_model.dart';
 export 'welcome_model.dart';
 
@@ -14,10 +17,28 @@ class WelcomeWidget extends StatefulWidget {
   _WelcomeWidgetState createState() => _WelcomeWidgetState();
 }
 
-class _WelcomeWidgetState extends State<WelcomeWidget> {
+class _WelcomeWidgetState extends State<WelcomeWidget>
+    with TickerProviderStateMixin {
   late WelcomeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'imageOnPageLoadAnimation': AnimationInfo(
+      loop: true,
+      reverse: true,
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        RotateEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 0.05,
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
@@ -43,6 +64,8 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -53,7 +76,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -79,15 +102,39 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     style: FlutterFlowTheme.of(context).headlineMedium,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(30.0, 25.0, 0.0, 0.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: SvgPicture.asset(
-                      'assets/images/Group_25.svg',
-                      width: MediaQuery.sizeOf(context).width * 0.7,
-                      height: MediaQuery.sizeOf(context).height * 0.4,
-                      fit: BoxFit.contain,
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: SizedBox(
+                    width: 280.0,
+                    height: 400.0,
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: const AlignmentDirectional(1.22, -0.03),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: SvgPicture.asset(
+                              'assets/images/Group_27.svg',
+                              width: 150.0,
+                              height: 150.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ).animateOnPageLoad(
+                              animationsMap['imageOnPageLoadAnimation']!),
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(0.1, 0.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/Group_36.png',
+                              width: 260.0,
+                              height: 260.0,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -111,6 +158,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                 fontFamily: 'Readex Pro',
                                 color: Colors.white,
                               ),
+                      elevation: 2.0,
                       borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
@@ -126,18 +174,15 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              82.5, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Already have an account?',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          ),
+                        Text(
+                          'Already have an account?',
+                          style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 82.5, 0.0),
+                              10.0, 0.0, 0.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,

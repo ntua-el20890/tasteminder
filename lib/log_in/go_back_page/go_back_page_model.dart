@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'page_widget.dart' show PageWidget;
+import 'go_back_page_widget.dart' show GoBackPageWidget;
 import 'package:flutter/material.dart';
 
-class PageModel extends FlutterFlowModel<PageWidget> {
+class GoBackPageModel extends FlutterFlowModel<GoBackPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

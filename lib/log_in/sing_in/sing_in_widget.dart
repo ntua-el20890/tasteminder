@@ -1,10 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
 import 'sing_in_model.dart';
 export 'sing_in_model.dart';
 
@@ -15,10 +17,52 @@ class SingInWidget extends StatefulWidget {
   _SingInWidgetState createState() => _SingInWidgetState();
 }
 
-class _SingInWidgetState extends State<SingInWidget> {
+class _SingInWidgetState extends State<SingInWidget>
+    with TickerProviderStateMixin {
   late SingInModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'textFieldOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 300.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 300.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
+    'textFieldOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 50.ms,
+          duration: 300.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 50.ms,
+          duration: 300.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
@@ -29,6 +73,7 @@ class _SingInWidgetState extends State<SingInWidget> {
     _model.emailSignInFocusNode ??= FocusNode();
 
     _model.passwordSignInController ??= TextEditingController();
+    _model.passwordSignInFocusNode ??= FocusNode();
   }
 
   @override
@@ -48,6 +93,8 @@ class _SingInWidgetState extends State<SingInWidget> {
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -77,17 +124,22 @@ class _SingInWidgetState extends State<SingInWidget> {
                       onTap: () async {
                         context.safePop();
                       },
-                      child: Container(
-                        width: 40.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 4.0,
+                        shape: const CircleBorder(),
+                        child: Container(
+                          width: 42.0,
+                          height: 42.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
                         ),
                       ),
                     ),
@@ -173,7 +225,6 @@ class _SingInWidgetState extends State<SingInWidget> {
                             child: TextFormField(
                               controller: _model.emailSignInController,
                               focusNode: _model.emailSignInFocusNode,
-                              autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'Email',
@@ -224,137 +275,82 @@ class _SingInWidgetState extends State<SingInWidget> {
                               style: FlutterFlowTheme.of(context).bodyMedium,
                               validator: _model.emailSignInControllerValidator
                                   .asValidator(context),
-                            ),
+                            ).animateOnPageLoad(animationsMap[
+                                'textFieldOnPageLoadAnimation1']!),
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 15.0, 35.0, 15.0, 0.0),
-                            child: Autocomplete<String>(
-                              initialValue: const TextEditingValue(),
-                              optionsBuilder: (textEditingValue) {
-                                if (textEditingValue.text == '') {
-                                  return const Iterable<String>.empty();
-                                }
-                                return ['Option 1'].where((option) {
-                                  final lowercaseOption = option.toLowerCase();
-                                  return lowercaseOption.contains(
-                                      textEditingValue.text.toLowerCase());
-                                });
-                              },
-                              optionsViewBuilder:
-                                  (context, onSelected, options) {
-                                return AutocompleteOptionsList(
-                                  textFieldKey: _model.passwordSignInKey,
-                                  textController:
-                                      _model.passwordSignInController!,
-                                  options: options.toList(),
-                                  onSelected: onSelected,
-                                  textStyle:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  textHighlightStyle: const TextStyle(),
-                                  elevation: 4.0,
-                                  optionBackgroundColor:
-                                      FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                  optionHighlightColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                  maxHeight: 200.0,
-                                );
-                              },
-                              onSelected: (String selection) {
-                                setState(() => _model
-                                    .passwordSignInSelectedOption = selection);
-                                FocusScope.of(context).unfocus();
-                              },
-                              fieldViewBuilder: (
-                                context,
-                                textEditingController,
-                                focusNode,
-                                onEditingComplete,
-                              ) {
-                                _model.passwordSignInFocusNode = focusNode;
-
-                                _model.passwordSignInController =
-                                    textEditingController;
-                                return TextFormField(
-                                  key: _model.passwordSignInKey,
-                                  controller: textEditingController,
-                                  focusNode: focusNode,
-                                  onEditingComplete: onEditingComplete,
-                                  autofocus: true,
-                                  obscureText: !_model.passwordSignInVisibility,
-                                  decoration: InputDecoration(
-                                    labelText: 'Password',
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontSize: 12.0,
-                                        ),
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                            child: TextFormField(
+                              controller: _model.passwordSignInController,
+                              focusNode: _model.passwordSignInFocusNode,
+                              obscureText: !_model.passwordSignInVisibility,
+                              decoration: InputDecoration(
+                                labelText: 'Password',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 12.0,
                                     ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    suffixIcon: InkWell(
-                                      onTap: () => setState(
-                                        () => _model.passwordSignInVisibility =
-                                            !_model.passwordSignInVisibility,
-                                      ),
-                                      focusNode: FocusNode(skipTraversal: true),
-                                      child: Icon(
-                                        _model.passwordSignInVisibility
-                                            ? Icons.visibility_outlined
-                                            : Icons.visibility_off_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 24.0,
-                                      ),
-                                    ),
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).labelMedium,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    width: 1.0,
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  validator: _model
-                                      .passwordSignInControllerValidator
-                                      .asValidator(context),
-                                );
-                              },
-                            ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                filled: true,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                suffixIcon: InkWell(
+                                  onTap: () => setState(
+                                    () => _model.passwordSignInVisibility =
+                                        !_model.passwordSignInVisibility,
+                                  ),
+                                  focusNode: FocusNode(skipTraversal: true),
+                                  child: Icon(
+                                    _model.passwordSignInVisibility
+                                        ? Icons.visibility_outlined
+                                        : Icons.visibility_off_outlined,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                              validator: _model
+                                  .passwordSignInControllerValidator
+                                  .asValidator(context),
+                            ).animateOnPageLoad(animationsMap[
+                                'textFieldOnPageLoadAnimation2']!),
                           ),
                         ],
                       ),
@@ -400,7 +396,7 @@ class _SingInWidgetState extends State<SingInWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                       ),
-                                  elevation: 0.0,
+                                  elevation: 2.0,
                                   borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,

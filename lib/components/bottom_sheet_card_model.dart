@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'card_copy_widget.dart' show CardCopyWidget;
+import 'bottom_sheet_card_widget.dart' show BottomSheetCardWidget;
 import 'package:flutter/material.dart';
 
-class CardCopyModel extends FlutterFlowModel<CardCopyWidget> {
+class BottomSheetCardModel extends FlutterFlowModel<BottomSheetCardWidget> {
   /// Initialization and disposal methods.
 
   @override

@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'entrycard_copy_model.dart';
 export 'entrycard_copy_model.dart';
 
@@ -35,6 +36,8 @@ class _EntrycardCopyWidgetState extends State<EntrycardCopyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return InkWell(
       splashColor: Colors.transparent,
       focusColor: Colors.transparent,

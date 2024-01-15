@@ -31,11 +31,6 @@ class EntryRecord extends FirestoreRecord {
   List<String> get image => _image ?? const [];
   bool hasImage() => _image != null;
 
-  // "Video" field.
-  List<String>? _video;
-  List<String> get video => _video ?? const [];
-  bool hasVideo() => _video != null;
-
   // "DateCreated" field.
   DateTime? _dateCreated;
   DateTime? get dateCreated => _dateCreated;
@@ -91,13 +86,32 @@ class EntryRecord extends FirestoreRecord {
   double get overallLvl => _overallLvl ?? 0.0;
   bool hasOverallLvl() => _overallLvl != null;
 
+  // "MapLocation" field.
+  LatLng? _mapLocation;
+  LatLng? get mapLocation => _mapLocation;
+  bool hasMapLocation() => _mapLocation != null;
+
+  // "LocationNote" field.
+  String? _locationNote;
+  String get locationNote => _locationNote ?? '';
+  bool hasLocationNote() => _locationNote != null;
+
+  // "Video" field.
+  String? _video;
+  String get video => _video ?? '';
+  bool hasVideo() => _video != null;
+
+  // "hasblankimage" field.
+  bool? _hasblankimage;
+  bool get hasblankimage => _hasblankimage ?? false;
+  bool hasHasblankimage() => _hasblankimage != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
     _creationName = snapshotData['CreationName'] as String?;
     _description = snapshotData['Description'] as String?;
     _image = getDataList(snapshotData['Image']);
-    _video = getDataList(snapshotData['Video']);
     _dateCreated = snapshotData['DateCreated'] as DateTime?;
     _userid = castToType<int>(snapshotData['userid']);
     _recipe = snapshotData['Recipe'] as String?;
@@ -109,6 +123,10 @@ class EntryRecord extends FirestoreRecord {
     _comfortLvl = castToType<double>(snapshotData['ComfortLvl']);
     _conveniencLvl = castToType<double>(snapshotData['ConveniencLvl']);
     _overallLvl = castToType<double>(snapshotData['OverallLvl']);
+    _mapLocation = snapshotData['MapLocation'] as LatLng?;
+    _locationNote = snapshotData['LocationNote'] as String?;
+    _video = snapshotData['Video'] as String?;
+    _hasblankimage = snapshotData['hasblankimage'] as bool?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -163,6 +181,10 @@ Map<String, dynamic> createEntryRecordData({
   double? comfortLvl,
   double? conveniencLvl,
   double? overallLvl,
+  LatLng? mapLocation,
+  String? locationNote,
+  String? video,
+  bool? hasblankimage,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -179,6 +201,10 @@ Map<String, dynamic> createEntryRecordData({
       'ComfortLvl': comfortLvl,
       'ConveniencLvl': conveniencLvl,
       'OverallLvl': overallLvl,
+      'MapLocation': mapLocation,
+      'LocationNote': locationNote,
+      'Video': video,
+      'hasblankimage': hasblankimage,
     }.withoutNulls,
   );
 
@@ -194,7 +220,6 @@ class EntryRecordDocumentEquality implements Equality<EntryRecord> {
     return e1?.creationName == e2?.creationName &&
         e1?.description == e2?.description &&
         listEquality.equals(e1?.image, e2?.image) &&
-        listEquality.equals(e1?.video, e2?.video) &&
         e1?.dateCreated == e2?.dateCreated &&
         e1?.userid == e2?.userid &&
         e1?.recipe == e2?.recipe &&
@@ -205,7 +230,11 @@ class EntryRecordDocumentEquality implements Equality<EntryRecord> {
         e1?.hungerLvl == e2?.hungerLvl &&
         e1?.comfortLvl == e2?.comfortLvl &&
         e1?.conveniencLvl == e2?.conveniencLvl &&
-        e1?.overallLvl == e2?.overallLvl;
+        e1?.overallLvl == e2?.overallLvl &&
+        e1?.mapLocation == e2?.mapLocation &&
+        e1?.locationNote == e2?.locationNote &&
+        e1?.video == e2?.video &&
+        e1?.hasblankimage == e2?.hasblankimage;
   }
 
   @override
@@ -213,7 +242,6 @@ class EntryRecordDocumentEquality implements Equality<EntryRecord> {
         e?.creationName,
         e?.description,
         e?.image,
-        e?.video,
         e?.dateCreated,
         e?.userid,
         e?.recipe,
@@ -224,7 +252,11 @@ class EntryRecordDocumentEquality implements Equality<EntryRecord> {
         e?.hungerLvl,
         e?.comfortLvl,
         e?.conveniencLvl,
-        e?.overallLvl
+        e?.overallLvl,
+        e?.mapLocation,
+        e?.locationNote,
+        e?.video,
+        e?.hasblankimage
       ]);
 
   @override

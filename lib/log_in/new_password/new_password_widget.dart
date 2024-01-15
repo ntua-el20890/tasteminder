@@ -1,9 +1,12 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
 import 'new_password_model.dart';
 export 'new_password_model.dart';
 
@@ -14,10 +17,52 @@ class NewPasswordWidget extends StatefulWidget {
   _NewPasswordWidgetState createState() => _NewPasswordWidgetState();
 }
 
-class _NewPasswordWidgetState extends State<NewPasswordWidget> {
+class _NewPasswordWidgetState extends State<NewPasswordWidget>
+    with TickerProviderStateMixin {
   late NewPasswordModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = {
+    'textFieldOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 300.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 300.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
+    'textFieldOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 50.ms,
+          duration: 300.ms,
+          begin: const Offset(0.0, 50.0),
+          end: const Offset(0.0, 0.0),
+        ),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 50.ms,
+          duration: 300.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+      ],
+    ),
+  };
 
   @override
   void initState() {
@@ -47,6 +92,8 @@ class _NewPasswordWidgetState extends State<NewPasswordWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -75,17 +122,22 @@ class _NewPasswordWidgetState extends State<NewPasswordWidget> {
                       onTap: () async {
                         context.safePop();
                       },
-                      child: Container(
-                        width: 40.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 4.0,
+                        shape: const CircleBorder(),
+                        child: Container(
+                          width: 42.0,
+                          height: 42.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
                         ),
                       ),
                     ),
@@ -306,7 +358,8 @@ class _NewPasswordWidgetState extends State<NewPasswordWidget> {
                                                 .asValidator(context),
                                           );
                                         },
-                                      ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'textFieldOnPageLoadAnimation1']!),
                                     ),
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -463,7 +516,8 @@ class _NewPasswordWidgetState extends State<NewPasswordWidget> {
                                                 .asValidator(context),
                                           );
                                         },
-                                      ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'textFieldOnPageLoadAnimation2']!),
                                     ),
                                   ],
                                 ),
@@ -491,7 +545,7 @@ class _NewPasswordWidgetState extends State<NewPasswordWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: Colors.white,
                                         ),
-                                    elevation: 0.0,
+                                    elevation: 2.0,
                                     borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,

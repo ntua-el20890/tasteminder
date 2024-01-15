@@ -7,10 +7,8 @@ class MapPageModel extends FlutterFlowModel<MapPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for PlacePicker widget.
+  var placePickerValue = const FFPlace();
   // State field(s) for GoogleMap widget.
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
@@ -23,8 +21,6 @@ class MapPageModel extends FlutterFlowModel<MapPageWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
   }
 
   /// Action blocks are added here.

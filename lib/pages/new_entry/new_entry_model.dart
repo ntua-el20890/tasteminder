@@ -12,6 +12,32 @@ class NewEntryModel extends FlutterFlowModel<NewEntryWidget> {
 
   String uploadedVideos = 'false';
 
+  bool? locationadded = false;
+
+  bool blankimage = false;
+
+  String yploadedimaagecamera = 'False';
+
+  List<String> photosforupload = [];
+  void addToPhotosforupload(String item) => photosforupload.add(item);
+  void removeFromPhotosforupload(String item) => photosforupload.remove(item);
+  void removeAtIndexFromPhotosforupload(int index) =>
+      photosforupload.removeAt(index);
+  void insertAtIndexInPhotosforupload(int index, String item) =>
+      photosforupload.insert(index, item);
+  void updatePhotosforuploadAtIndex(int index, Function(String) updateFn) =>
+      photosforupload[index] = updateFn(photosforupload[index]);
+
+  List<String> photosforview = [];
+  void addToPhotosforview(String item) => photosforview.add(item);
+  void removeFromPhotosforview(String item) => photosforview.remove(item);
+  void removeAtIndexFromPhotosforview(int index) =>
+      photosforview.removeAt(index);
+  void insertAtIndexInPhotosforview(int index, String item) =>
+      photosforview.insert(index, item);
+  void updatePhotosforviewAtIndex(int index, Function(String) updateFn) =>
+      photosforview[index] = updateFn(photosforview[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -45,33 +71,34 @@ class NewEntryModel extends FlutterFlowModel<NewEntryWidget> {
   double? newConvLvlValue;
   // State field(s) for NewOverallLvl widget.
   double? newOverallLvlValue;
-  Record? audioRecorder;
+  AudioRecorder? audioRecorder;
   String? audionote;
+  FFUploadedFile audionoteFile = FFUploadedFile(bytes: Uint8List.fromList([]));
   bool isDataUploading1 = false;
-  List<FFUploadedFile> uploadedLocalFiles1 = [];
-  List<String> uploadedFileUrls1 = [];
+  FFUploadedFile uploadedLocalFile1 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl1 = '';
 
-  // State field(s) for PageView widget.
-  PageController? pageViewController1;
-
-  int get pageViewCurrentIndex1 => pageViewController1 != null &&
-          pageViewController1!.hasClients &&
-          pageViewController1!.page != null
-      ? pageViewController1!.page!.round()
-      : 0;
   bool isDataUploading2 = false;
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl2 = '';
 
   // State field(s) for PageView widget.
-  PageController? pageViewController2;
+  PageController? pageViewController;
 
-  int get pageViewCurrentIndex2 => pageViewController2 != null &&
-          pageViewController2!.hasClients &&
-          pageViewController2!.page != null
-      ? pageViewController2!.page!.round()
+  int get pageViewCurrentIndex => pageViewController != null &&
+          pageViewController!.hasClients &&
+          pageViewController!.page != null
+      ? pageViewController!.page!.round()
       : 0;
+  bool isDataUploading3 = false;
+  FFUploadedFile uploadedLocalFile3 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl3 = '';
+
+  // State field(s) for PlacePicker widget.
+  var placePickerValue = const FFPlace();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController6;

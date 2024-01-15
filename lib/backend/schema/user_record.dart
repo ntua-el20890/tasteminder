@@ -66,6 +66,31 @@ class UserRecord extends FirestoreRecord {
   int get level => _level ?? 0;
   bool hasLevel() => _level != null;
 
+  // "credit" field.
+  int? _credit;
+  int get credit => _credit ?? 0;
+  bool hasCredit() => _credit != null;
+
+  // "totalexp" field.
+  double? _totalexp;
+  double get totalexp => _totalexp ?? 0.0;
+  bool hasTotalexp() => _totalexp != null;
+
+  // "totalimages" field.
+  int? _totalimages;
+  int get totalimages => _totalimages ?? 0;
+  bool hasTotalimages() => _totalimages != null;
+
+  // "totalvideos" field.
+  int? _totalvideos;
+  int get totalvideos => _totalvideos ?? 0;
+  bool hasTotalvideos() => _totalvideos != null;
+
+  // "totalaudio" field.
+  int? _totalaudio;
+  int get totalaudio => _totalaudio ?? 0;
+  bool hasTotalaudio() => _totalaudio != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -77,6 +102,11 @@ class UserRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _coverPhotoUrl = snapshotData['cover_photo_url'] as String?;
     _level = castToType<int>(snapshotData['level']);
+    _credit = castToType<int>(snapshotData['credit']);
+    _totalexp = castToType<double>(snapshotData['totalexp']);
+    _totalimages = castToType<int>(snapshotData['totalimages']);
+    _totalvideos = castToType<int>(snapshotData['totalvideos']);
+    _totalaudio = castToType<int>(snapshotData['totalaudio']);
   }
 
   static CollectionReference get collection =>
@@ -123,6 +153,11 @@ Map<String, dynamic> createUserRecordData({
   String? phoneNumber,
   String? coverPhotoUrl,
   int? level,
+  int? credit,
+  double? totalexp,
+  int? totalimages,
+  int? totalvideos,
+  int? totalaudio,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -136,6 +171,11 @@ Map<String, dynamic> createUserRecordData({
       'phone_number': phoneNumber,
       'cover_photo_url': coverPhotoUrl,
       'level': level,
+      'credit': credit,
+      'totalexp': totalexp,
+      'totalimages': totalimages,
+      'totalvideos': totalvideos,
+      'totalaudio': totalaudio,
     }.withoutNulls,
   );
 
@@ -156,7 +196,12 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.bio == e2?.bio &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.coverPhotoUrl == e2?.coverPhotoUrl &&
-        e1?.level == e2?.level;
+        e1?.level == e2?.level &&
+        e1?.credit == e2?.credit &&
+        e1?.totalexp == e2?.totalexp &&
+        e1?.totalimages == e2?.totalimages &&
+        e1?.totalvideos == e2?.totalvideos &&
+        e1?.totalaudio == e2?.totalaudio;
   }
 
   @override
@@ -170,7 +215,12 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.bio,
         e?.phoneNumber,
         e?.coverPhotoUrl,
-        e?.level
+        e?.level,
+        e?.credit,
+        e?.totalexp,
+        e?.totalimages,
+        e?.totalvideos,
+        e?.totalaudio
       ]);
 
   @override

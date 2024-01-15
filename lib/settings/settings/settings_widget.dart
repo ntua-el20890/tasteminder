@@ -1,8 +1,9 @@
-import '/auth/firebase_auth/auth_util.dart';
+import '/components/log_out_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'settings_model.dart';
 export 'settings_model.dart';
 
@@ -42,6 +43,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -71,17 +74,23 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           onTap: () async {
                             context.safePop();
                           },
-                          child: Container(
-                            width: 40.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                          child: Material(
+                            color: Colors.transparent,
+                            elevation: 4.0,
+                            shape: const CircleBorder(),
+                            child: Container(
+                              width: 42.0,
+                              height: 42.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.arrow_back,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
                             ),
                           ),
                         ),
@@ -371,11 +380,24 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          GoRouter.of(context).prepareAuthEvent();
-                          await authManager.signOut();
-                          GoRouter.of(context).clearRedirectLocation();
-
-                          context.goNamedAuth('Welcome', context.mounted);
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).accent4,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: const LogOutWidget(),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
                         },
                         child: Stack(
                           children: [

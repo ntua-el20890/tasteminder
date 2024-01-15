@@ -8,8 +8,8 @@ class ForgotPasswordModel extends FlutterFlowModel<ForgotPasswordWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  TextEditingController? emailTextController;
+  String? Function(BuildContext, String?)? emailTextControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -20,7 +20,7 @@ class ForgotPasswordModel extends FlutterFlowModel<ForgotPasswordWidget> {
   void dispose() {
     unfocusNode.dispose();
     textFieldFocusNode?.dispose();
-    textController?.dispose();
+    emailTextController?.dispose();
   }
 
   /// Action blocks are added here.

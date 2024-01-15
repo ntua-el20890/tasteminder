@@ -89,13 +89,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const HomePageWidget(),
         ),
         FFRoute(
-          name: 'CollectionPage',
-          path: '/collectionPage',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'CollectionPage')
-              : const CollectionPageWidget(),
-        ),
-        FFRoute(
           name: 'MapPage',
           path: '/mapPage',
           builder: (context, params) => params.isEmpty
@@ -108,11 +101,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'ProfilePage')
               : const ProfilePageWidget(),
-        ),
-        FFRoute(
-          name: 'filters',
-          path: '/filters',
-          builder: (context, params) => const FiltersWidget(),
         ),
         FFRoute(
           name: 'EditProfile',
@@ -160,9 +148,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: 'CodeVerification',
-          path: '/codeVerification',
-          builder: (context, params) => const CodeVerificationWidget(),
+          name: 'GoBackPage',
+          path: '/goBackPage',
+          builder: (context, params) => const GoBackPageWidget(),
         ),
         FFRoute(
           name: 'PasswordUpdate',
@@ -193,11 +181,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'page',
-          path: '/page',
-          builder: (context, params) => const PageWidget(),
-        ),
-        FFRoute(
           name: 'Levels',
           path: '/levels',
           builder: (context, params) => const LevelsWidget(),
@@ -213,6 +196,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'NewEntry')
               : const NewEntryWidget(),
+        ),
+        FFRoute(
+          name: 'CollectionPage_3',
+          path: '/collectionPage3',
+          builder: (context, params) => const CollectionPage3Widget(),
+        ),
+        FFRoute(
+          name: 'CollectionPage_1',
+          path: '/collectionPage1',
+          builder: (context, params) => const CollectionPage1Widget(),
+        ),
+        FFRoute(
+          name: 'CollectionPage_2',
+          path: '/collectionPage2',
+          builder: (context, params) => const CollectionPage2Widget(),
+        ),
+        FFRoute(
+          name: 'EditEntry',
+          path: '/editEntry',
+          builder: (context, params) => EditEntryWidget(
+            entryRecievedEdit: params.getParam('entryRecievedEdit',
+                ParamType.DocumentReference, false, ['user', 'entry']),
+            hasblankimage: params.getParam('hasblankimage', ParamType.bool),
+            imagesinentryreci: params.getParam<String>(
+                'imagesinentryreci', ParamType.String, true),
+            audioinentryrec:
+                params.getParam('audioinentryrec', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'CollectionPage',
+          path: '/collectionPage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'CollectionPage')
+              : const CollectionPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -394,9 +412,9 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: FlutterFlowTheme.of(context).tertiary,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                   child: Image.asset(
-                    'assets/images/Group_25.png',
+                    'assets/images/Group_35.png',
                     fit: BoxFit.contain,
                   ),
                 )

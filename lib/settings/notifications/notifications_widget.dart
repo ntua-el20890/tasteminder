@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'notifications_model.dart';
 export 'notifications_model.dart';
 
@@ -41,6 +42,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -62,25 +65,31 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                       child: Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                        child: Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            shape: BoxShape.circle,
-                          ),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.safePop();
-                            },
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                        child: Material(
+                          color: Colors.transparent,
+                          elevation: 4.0,
+                          shape: const CircleBorder(),
+                          child: Container(
+                            width: 42.0,
+                            height: 42.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              shape: BoxShape.circle,
+                            ),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.safePop();
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
                             ),
                           ),
                         ),
@@ -153,7 +162,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                 activeColor:
                                     FlutterFlowTheme.of(context).primary,
                                 activeTrackColor:
-                                    FlutterFlowTheme.of(context).accent1,
+                                    FlutterFlowTheme.of(context).alternate,
                                 inactiveTrackColor:
                                     FlutterFlowTheme.of(context).alternate,
                                 inactiveThumbColor:
@@ -190,7 +199,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                 activeColor:
                                     FlutterFlowTheme.of(context).primary,
                                 activeTrackColor:
-                                    FlutterFlowTheme.of(context).accent1,
+                                    FlutterFlowTheme.of(context).alternate,
                                 inactiveTrackColor:
                                     FlutterFlowTheme.of(context).alternate,
                                 inactiveThumbColor:
@@ -227,7 +236,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                 activeColor:
                                     FlutterFlowTheme.of(context).primary,
                                 activeTrackColor:
-                                    FlutterFlowTheme.of(context).accent1,
+                                    FlutterFlowTheme.of(context).alternate,
                                 inactiveTrackColor:
                                     FlutterFlowTheme.of(context).alternate,
                                 inactiveThumbColor:
@@ -280,7 +289,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                 activeColor:
                                     FlutterFlowTheme.of(context).primary,
                                 activeTrackColor:
-                                    FlutterFlowTheme.of(context).accent1,
+                                    FlutterFlowTheme.of(context).alternate,
                                 inactiveTrackColor:
                                     FlutterFlowTheme.of(context).alternate,
                                 inactiveThumbColor:
@@ -317,7 +326,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                 activeColor:
                                     FlutterFlowTheme.of(context).primary,
                                 activeTrackColor:
-                                    FlutterFlowTheme.of(context).accent1,
+                                    FlutterFlowTheme.of(context).alternate,
                                 inactiveTrackColor:
                                     FlutterFlowTheme.of(context).alternate,
                                 inactiveThumbColor:

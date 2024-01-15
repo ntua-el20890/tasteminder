@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_audio_player.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
@@ -8,6 +9,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'entry_model.dart';
 export 'entry_model.dart';
@@ -55,6 +57,8 @@ class _EntryWidgetState extends State<EntryWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return StreamBuilder<EntryRecord>(
       stream: EntryRecord.getDocument(widget.entryRecieved!),
       builder: (context, snapshot) {
@@ -82,11 +86,12 @@ class _EntryWidgetState extends State<EntryWidget> {
               : FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
+            resizeToAvoidBottomInset: false,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                 child: Stack(
                   children: [
                     Stack(
@@ -103,7 +108,7 @@ class _EntryWidgetState extends State<EntryWidget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 40.0),
                                     child: PageView.builder(
-                                      controller: _model.pageViewController1 ??=
+                                      controller: _model.pageViewController ??=
                                           PageController(
                                               initialPage:
                                                   min(0, images.length - 1)),
@@ -172,14 +177,14 @@ class _EntryWidgetState extends State<EntryWidget> {
                                       child: smooth_page_indicator
                                           .SmoothPageIndicator(
                                         controller: _model
-                                                .pageViewController1 ??=
+                                                .pageViewController ??=
                                             PageController(
                                                 initialPage:
                                                     min(0, images.length - 1)),
                                         count: images.length,
                                         axisDirection: Axis.horizontal,
                                         onDotClicked: (i) async {
-                                          await _model.pageViewController1!
+                                          await _model.pageViewController!
                                               .animateToPage(
                                             i,
                                             duration:
@@ -214,18 +219,56 @@ class _EntryWidgetState extends State<EntryWidget> {
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 15.0, 0.0),
-                            child: Container(
-                              width: 40.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                Icons.edit_sharp,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'EditEntry',
+                                  queryParameters: {
+                                    'entryRecievedEdit': serializeParam(
+                                      widget.entryRecieved,
+                                      ParamType.DocumentReference,
+                                    ),
+                                    'hasblankimage': serializeParam(
+                                      entryEntryRecord.hasblankimage,
+                                      ParamType.bool,
+                                    ),
+                                    'imagesinentryreci': serializeParam(
+                                      entryEntryRecord.image,
+                                      ParamType.String,
+                                      true,
+                                    ),
+                                    'audioinentryrec': serializeParam(
+                                      entryEntryRecord.audio != ''
+                                          ? entryEntryRecord.audio
+                                          : null,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              child: Material(
+                                color: Colors.transparent,
+                                elevation: 4.0,
+                                shape: const CircleBorder(),
+                                child: Container(
+                                  width: 42.0,
+                                  height: 42.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    Icons.edit_sharp,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -235,26 +278,31 @@ class _EntryWidgetState extends State<EntryWidget> {
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 15.0, 40.0, 0.0, 0.0),
-                            child: Container(
-                              width: 40.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                shape: BoxShape.circle,
-                              ),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.safePop();
-                                },
-                                child: Icon(
-                                  Icons.arrow_back_sharp,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
+                            child: Material(
+                              color: Colors.transparent,
+                              elevation: 4.0,
+                              shape: const CircleBorder(),
+                              child: Container(
+                                width: 42.0,
+                                height: 42.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.safePop();
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_back_sharp,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
                                 ),
                               ),
                             ),
@@ -264,31 +312,33 @@ class _EntryWidgetState extends State<EntryWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 200.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 200.0, 0.0, 20.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 15.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    entryEntryRecord.creationName,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 15.0,
-                                          fontWeight: FontWeight.w800,
-                                        ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 0.0),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        entryEntryRecord.creationName,
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge,
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                             if (entryEntryRecord.description != '')
@@ -299,12 +349,8 @@ class _EntryWidgetState extends State<EntryWidget> {
                                       15.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'Description',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 13.0,
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                 ),
                               ),
@@ -320,19 +366,34 @@ class _EntryWidgetState extends State<EntryWidget> {
                                         FlutterFlowTheme.of(context).tertiary,
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  child: Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 10.0, 10.0, 10.0),
-                                      child: Text(
-                                        entryEntryRecord.description,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 12.0,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 10.0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: const AlignmentDirectional(
+                                                -1.0, -1.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 10.0, 10.0),
+                                              child: Text(
+                                                entryEntryRecord.description,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 12.0,
+                                                        ),
+                                              ),
                                             ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -346,12 +407,8 @@ class _EntryWidgetState extends State<EntryWidget> {
                                       15.0, 15.0, 0.0, 0.0),
                                   child: Text(
                                     'Recipe',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 13.0,
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                 ),
                               ),
@@ -367,19 +424,34 @@ class _EntryWidgetState extends State<EntryWidget> {
                                         FlutterFlowTheme.of(context).tertiary,
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  child: Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 10.0, 10.0, 10.0),
-                                      child: Text(
-                                        entryEntryRecord.recipe,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 12.0,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 10.0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: const AlignmentDirectional(
+                                                -1.0, -1.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 10.0, 10.0),
+                                              child: Text(
+                                                entryEntryRecord.recipe,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 12.0,
+                                                        ),
+                                              ),
                                             ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -393,12 +465,8 @@ class _EntryWidgetState extends State<EntryWidget> {
                                       15.0, 15.0, 0.0, 0.0),
                                   child: Text(
                                     'Ingredients',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 13.0,
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                 ),
                               ),
@@ -416,15 +484,33 @@ class _EntryWidgetState extends State<EntryWidget> {
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 10.0, 10.0, 10.0),
-                                    child: Text(
-                                      entryEntryRecord.ingredients,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 12.0,
+                                        0.0, 0.0, 0.0, 10.0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: const AlignmentDirectional(
+                                                -1.0, -1.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 10.0, 10.0),
+                                              child: Text(
+                                                entryEntryRecord.ingredients,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 12.0,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -437,12 +523,8 @@ class _EntryWidgetState extends State<EntryWidget> {
                                       15.0, 15.0, 0.0, 0.0),
                                   child: Text(
                                     'Tags',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 13.0,
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                 ),
                               ),
@@ -460,15 +542,33 @@ class _EntryWidgetState extends State<EntryWidget> {
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 10.0, 10.0, 10.0),
-                                    child: Text(
-                                      entryEntryRecord.tags,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 12.0,
+                                        0.0, 0.0, 0.0, 10.0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment: const AlignmentDirectional(
+                                                -1.0, -1.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 10.0, 10.0),
+                                              child: Text(
+                                                entryEntryRecord.tags,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 12.0,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -792,12 +892,8 @@ class _EntryWidgetState extends State<EntryWidget> {
                                       15.0, 15.0, 0.0, 0.0),
                                   child: Text(
                                     'Audio Note',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 13.0,
-                                        ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                 ),
                               ),
@@ -821,55 +917,80 @@ class _EntryWidgetState extends State<EntryWidget> {
                                       ),
                                   playbackDurationTextStyle:
                                       FlutterFlowTheme.of(context).labelMedium,
-                                  fillColor:
-                                      FlutterFlowTheme.of(context).alternate,
+                                  fillColor: const Color(0x75F3BE96),
                                   playbackButtonColor:
                                       FlutterFlowTheme.of(context).primary,
                                   activeTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  elevation: 3.0,
+                                      FlutterFlowTheme.of(context).secondary,
+                                  elevation: 0.0,
                                   playInBackground: PlayInBackground
                                       .disabledRestoreOnForeground,
                                 ),
                               ),
-                            Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 15.0, 0.0, 0.0),
-                                child: Text(
-                                  'Map',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 13.0,
-                                      ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 10.0, 0.0, 0.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(0.0),
-                                child: Image.network(
-                                  'https://picsum.photos/seed/349/600',
-                                  width: 300.0,
-                                  height: 200.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            if (entryEntryRecord.video
-                                .contains(entryEntryRecord.video.first))
+                            if ((entryEntryRecord.mapLocation != null) ||
+                                (entryEntryRecord.locationNote != ''))
                               Align(
                                 alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      15.0, 15.0, 0.0, 15.0),
+                                      15.0, 15.0, 0.0, 10.0),
                                   child: Text(
-                                    'Video',
+                                    'Location',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                ),
+                              ),
+                            if (entryEntryRecord.mapLocation != null)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 0.0),
+                                child: Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height: 200.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Builder(builder: (context) {
+                                    final googleMapMarker = entryEntryRecord;
+                                    return FlutterFlowGoogleMap(
+                                      controller: _model.googleMapsController,
+                                      onCameraIdle: (latLng) =>
+                                          _model.googleMapsCenter = latLng,
+                                      initialLocation:
+                                          _model.googleMapsCenter ??=
+                                              entryEntryRecord.mapLocation!,
+                                      markers: [
+                                        FlutterFlowMarker(
+                                          googleMapMarker.reference.path,
+                                          googleMapMarker.mapLocation!,
+                                        ),
+                                      ],
+                                      markerColor: GoogleMarkerColor.orange,
+                                      mapType: MapType.normal,
+                                      style: GoogleMapStyle.standard,
+                                      initialZoom: 14.0,
+                                      allowInteraction: false,
+                                      allowZoom: false,
+                                      showZoomControls: false,
+                                      showLocation: true,
+                                      showCompass: false,
+                                      showMapToolbar: false,
+                                      showTraffic: false,
+                                      centerMapOnMarkerTap: true,
+                                    );
+                                  }),
+                                ),
+                              ),
+                            if (entryEntryRecord.locationNote != '')
+                              Align(
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 5.0, 0.0, 10.0),
+                                  child: Text(
+                                    'Location Note: ${entryEntryRecord.locationNote}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -879,114 +1000,40 @@ class _EntryWidgetState extends State<EntryWidget> {
                                   ),
                                 ),
                               ),
-                            Container(
-                              height: 200.0,
-                              decoration: const BoxDecoration(),
-                              child: Builder(
-                                builder: (context) {
-                                  final videofromentry =
-                                      entryEntryRecord.video.toList();
-                                  return SizedBox(
-                                    width: double.infinity,
-                                    height: 500.0,
-                                    child: Stack(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 40.0),
-                                          child: PageView.builder(
-                                            controller: _model
-                                                    .pageViewController2 ??=
-                                                PageController(
-                                                    initialPage: min(
-                                                        0,
-                                                        videofromentry.length -
-                                                            1)),
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: videofromentry.length,
-                                            itemBuilder:
-                                                (context, videofromentryIndex) {
-                                              final videofromentryItem =
-                                                  videofromentry[
-                                                      videofromentryIndex];
-                                              return Visibility(
-                                                visible: entryEntryRecord.video
-                                                    .contains(entryEntryRecord
-                                                        .video.first),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          15.0, 0.0, 15.0, 5.0),
-                                                  child: FlutterFlowVideoPlayer(
-                                                    path: videofromentryItem,
-                                                    videoType:
-                                                        VideoType.network,
-                                                    autoPlay: false,
-                                                    looping: true,
-                                                    showControls: true,
-                                                    allowFullScreen: true,
-                                                    allowPlaybackSpeedMenu:
-                                                        false,
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(-1.0, 1.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 0.0, 16.0),
-                                            child: smooth_page_indicator
-                                                .SmoothPageIndicator(
-                                              controller:
-                                                  _model.pageViewController2 ??=
-                                                      PageController(
-                                                          initialPage: min(
-                                                              0,
-                                                              videofromentry
-                                                                      .length -
-                                                                  1)),
-                                              count: videofromentry.length,
-                                              axisDirection: Axis.horizontal,
-                                              onDotClicked: (i) async {
-                                                await _model
-                                                    .pageViewController2!
-                                                    .animateToPage(
-                                                  i,
-                                                  duration: const Duration(
-                                                      milliseconds: 500),
-                                                  curve: Curves.ease,
-                                                );
-                                              },
-                                              effect: smooth_page_indicator
-                                                  .ExpandingDotsEffect(
-                                                expansionFactor: 3.0,
-                                                spacing: 8.0,
-                                                radius: 16.0,
-                                                dotWidth: 16.0,
-                                                dotHeight: 8.0,
-                                                dotColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .accent1,
-                                                activeDotColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                paintStyle: PaintingStyle.fill,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
+                            if (entryEntryRecord.video != '')
+                              Align(
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 15.0, 0.0, 15.0),
+                                  child: Text(
+                                    'Video',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                ),
                               ),
-                            ),
+                            if (entryEntryRecord.video != '')
+                              Container(
+                                height: 200.0,
+                                decoration: const BoxDecoration(),
+                                child: Visibility(
+                                  visible: entryEntryRecord.video != '',
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        15.0, 0.0, 15.0, 5.0),
+                                    child: FlutterFlowVideoPlayer(
+                                      path: entryEntryRecord.video,
+                                      videoType: VideoType.network,
+                                      autoPlay: false,
+                                      looping: true,
+                                      showControls: true,
+                                      allowFullScreen: true,
+                                      allowPlaybackSpeedMenu: false,
+                                    ),
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ),
@@ -998,31 +1045,36 @@ class _EntryWidgetState extends State<EntryWidget> {
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
                         child: Stack(
                           children: [
-                            Container(
-                              width: 55.0,
-                              height: 55.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Builder(
-                                builder: (context) => InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await Share.share(
-                                      'I wanted to share my Creation with you!',
-                                      sharePositionOrigin:
-                                          getWidgetBoundingBox(context),
-                                    );
-                                  },
-                                  child: Icon(
-                                    Icons.share,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 35.0,
+                            Material(
+                              color: Colors.transparent,
+                              elevation: 4.0,
+                              shape: const CircleBorder(),
+                              child: Container(
+                                width: 55.0,
+                                height: 55.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Builder(
+                                  builder: (context) => InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Share.share(
+                                        'Hey! I added this${entryEntryRecord.creationName}creation to my Tasteminder app and I wanted to share it with you! Let me know if you want to know more about it! I gave it an Overall score of ${entryEntryRecord.overallLvl.toString()}/10! ',
+                                        sharePositionOrigin:
+                                            getWidgetBoundingBox(context),
+                                      );
+                                    },
+                                    child: Icon(
+                                      Icons.share,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 35.0,
+                                    ),
                                   ),
                                 ),
                               ),

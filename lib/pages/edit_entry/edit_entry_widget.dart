@@ -32,7 +32,7 @@ class EditEntryWidget extends StatefulWidget {
     bool? hasblankimage,
     required this.imagesinentryreci,
     this.audioinentryrec,
-  })  : hasblankimage = hasblankimage ?? false;
+  }) : hasblankimage = hasblankimage ?? false;
 
   final DocumentReference? entryRecievedEdit;
   final bool hasblankimage;
@@ -40,7 +40,7 @@ class EditEntryWidget extends StatefulWidget {
   final String? audioinentryrec;
 
   @override
-  _EditEntryWidgetState createState() => _EditEntryWidgetState();
+  State<EditEntryWidget> createState() => _EditEntryWidgetState();
 }
 
 class _EditEntryWidgetState extends State<EditEntryWidget> {
@@ -1069,9 +1069,10 @@ class _EditEntryWidgetState extends State<EditEntryWidget> {
                                                     .audioRecorder
                                                     ?.stop();
                                                 if (_model.audionote != null) {
-                                                  _model.audionoteFile =
+                                                  _model.recordedFileBytes =
                                                       FFUploadedFile(
-                                                    name: 'audionote.mp3',
+                                                    name:
+                                                        'recordedFileBytes.mp3',
                                                     bytes: await XFile(
                                                             _model.audionote!)
                                                         .readAsBytes(),

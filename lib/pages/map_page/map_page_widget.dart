@@ -16,7 +16,7 @@ class MapPageWidget extends StatefulWidget {
   const MapPageWidget({super.key});
 
   @override
-  _MapPageWidgetState createState() => _MapPageWidgetState();
+  State<MapPageWidget> createState() => _MapPageWidgetState();
 }
 
 class _MapPageWidgetState extends State<MapPageWidget> {

@@ -10,7 +10,7 @@ class LogoWidget extends StatefulWidget {
   const LogoWidget({super.key});
 
   @override
-  _LogoWidgetState createState() => _LogoWidgetState();
+  State<LogoWidget> createState() => _LogoWidgetState();
 }
 
 class _LogoWidgetState extends State<LogoWidget> {

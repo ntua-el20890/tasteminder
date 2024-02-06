@@ -18,7 +18,7 @@ class CollectionPageWidget extends StatefulWidget {
   const CollectionPageWidget({super.key});
 
   @override
-  _CollectionPageWidgetState createState() => _CollectionPageWidgetState();
+  State<CollectionPageWidget> createState() => _CollectionPageWidgetState();
 }
 
 class _CollectionPageWidgetState extends State<CollectionPageWidget> {

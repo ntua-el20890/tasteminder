@@ -23,7 +23,7 @@ class EntryWidget extends StatefulWidget {
   final DocumentReference? entryRecieved;
 
   @override
-  _EntryWidgetState createState() => _EntryWidgetState();
+  State<EntryWidget> createState() => _EntryWidgetState();
 }
 
 class _EntryWidgetState extends State<EntryWidget> {

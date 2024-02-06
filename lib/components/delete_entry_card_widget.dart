@@ -16,7 +16,7 @@ class DeleteEntryCardWidget extends StatefulWidget {
   final EntryRecord? deletedocc;
 
   @override
-  _DeleteEntryCardWidgetState createState() => _DeleteEntryCardWidgetState();
+  State<DeleteEntryCardWidget> createState() => _DeleteEntryCardWidgetState();
 }
 
 class _DeleteEntryCardWidgetState extends State<DeleteEntryCardWidget> {

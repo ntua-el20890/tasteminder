@@ -16,7 +16,7 @@ class BottomSheetCardWidget extends StatefulWidget {
   final EntryRecord? entryfromap;
 
   @override
-  _BottomSheetCardWidgetState createState() => _BottomSheetCardWidgetState();
+  State<BottomSheetCardWidget> createState() => _BottomSheetCardWidgetState();
 }
 
 class _BottomSheetCardWidgetState extends State<BottomSheetCardWidget> {

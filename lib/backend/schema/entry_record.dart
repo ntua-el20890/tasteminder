@@ -134,8 +134,8 @@ class EntryRecord extends FirestoreRecord {
           ? parent.collection('entry')
           : FirebaseFirestore.instance.collectionGroup('entry');
 
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('entry').doc();
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('entry').doc(id);
 
   static Stream<EntryRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => EntryRecord.fromSnapshot(s));

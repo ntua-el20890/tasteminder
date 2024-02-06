@@ -72,7 +72,8 @@ class EditEntryModel extends FlutterFlowModel<EditEntryWidget> {
   double? newOverallLvlValue;
   AudioRecorder? audioRecorder;
   String? audionote;
-  FFUploadedFile audionoteFile = FFUploadedFile(bytes: Uint8List.fromList([]));
+  FFUploadedFile recordedFileBytes =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
   bool isDataUploading1 = false;
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));

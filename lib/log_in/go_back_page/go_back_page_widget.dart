@@ -11,7 +11,7 @@ class GoBackPageWidget extends StatefulWidget {
   const GoBackPageWidget({super.key});
 
   @override
-  _GoBackPageWidgetState createState() => _GoBackPageWidgetState();
+  State<GoBackPageWidget> createState() => _GoBackPageWidgetState();
 }
 
 class _GoBackPageWidgetState extends State<GoBackPageWidget> {

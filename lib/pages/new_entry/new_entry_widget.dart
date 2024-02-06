@@ -27,7 +27,7 @@ class NewEntryWidget extends StatefulWidget {
   const NewEntryWidget({super.key});
 
   @override
-  _NewEntryWidgetState createState() => _NewEntryWidgetState();
+  State<NewEntryWidget> createState() => _NewEntryWidgetState();
 }
 
 class _NewEntryWidgetState extends State<NewEntryWidget> {
@@ -977,8 +977,8 @@ class _NewEntryWidgetState extends State<NewEntryWidget> {
                                     _model.audionote =
                                         await _model.audioRecorder?.stop();
                                     if (_model.audionote != null) {
-                                      _model.audionoteFile = FFUploadedFile(
-                                        name: 'audionote.mp3',
+                                      _model.recordedFileBytes = FFUploadedFile(
+                                        name: 'recordedFileBytes.mp3',
                                         bytes: await XFile(_model.audionote!)
                                             .readAsBytes(),
                                       );

@@ -9,7 +9,7 @@ class EntrycardCopyWidget extends StatefulWidget {
   const EntrycardCopyWidget({super.key});
 
   @override
-  _EntrycardCopyWidgetState createState() => _EntrycardCopyWidgetState();
+  State<EntrycardCopyWidget> createState() => _EntrycardCopyWidgetState();
 }
 
 class _EntrycardCopyWidgetState extends State<EntrycardCopyWidget> {

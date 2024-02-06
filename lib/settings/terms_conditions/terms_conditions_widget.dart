@@ -10,7 +10,7 @@ class TermsConditionsWidget extends StatefulWidget {
   const TermsConditionsWidget({super.key});
 
   @override
-  _TermsConditionsWidgetState createState() => _TermsConditionsWidgetState();
+  State<TermsConditionsWidget> createState() => _TermsConditionsWidgetState();
 }
 
 class _TermsConditionsWidgetState extends State<TermsConditionsWidget> {

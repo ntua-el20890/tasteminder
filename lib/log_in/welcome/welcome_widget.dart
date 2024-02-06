@@ -14,7 +14,7 @@ class WelcomeWidget extends StatefulWidget {
   const WelcomeWidget({super.key});
 
   @override
-  _WelcomeWidgetState createState() => _WelcomeWidgetState();
+  State<WelcomeWidget> createState() => _WelcomeWidgetState();
 }
 
 class _WelcomeWidgetState extends State<WelcomeWidget>

@@ -14,7 +14,7 @@ class SubmitABugReportWidget extends StatefulWidget {
   const SubmitABugReportWidget({super.key});
 
   @override
-  _SubmitABugReportWidgetState createState() => _SubmitABugReportWidgetState();
+  State<SubmitABugReportWidget> createState() => _SubmitABugReportWidgetState();
 }
 
 class _SubmitABugReportWidgetState extends State<SubmitABugReportWidget> {

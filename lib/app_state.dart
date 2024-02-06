@@ -28,7 +28,7 @@ class FFAppState extends ChangeNotifier {
     _SearchActive = value;
   }
 
-  double _totalxp = 0;
+  double _totalxp = 0.0;
   double get totalxp => _totalxp;
   set totalxp(double value) {
     _totalxp = value;

@@ -10,7 +10,7 @@ class LevelsWidget extends StatefulWidget {
   const LevelsWidget({super.key});
 
   @override
-  _LevelsWidgetState createState() => _LevelsWidgetState();
+  State<LevelsWidget> createState() => _LevelsWidgetState();
 }
 
 class _LevelsWidgetState extends State<LevelsWidget> {

@@ -14,7 +14,7 @@ class SingInWidget extends StatefulWidget {
   const SingInWidget({super.key});
 
   @override
-  _SingInWidgetState createState() => _SingInWidgetState();
+  State<SingInWidget> createState() => _SingInWidgetState();
 }
 
 class _SingInWidgetState extends State<SingInWidget>

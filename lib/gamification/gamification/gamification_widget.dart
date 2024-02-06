@@ -13,7 +13,7 @@ class GamificationWidget extends StatefulWidget {
   const GamificationWidget({super.key});
 
   @override
-  _GamificationWidgetState createState() => _GamificationWidgetState();
+  State<GamificationWidget> createState() => _GamificationWidgetState();
 }
 
 class _GamificationWidgetState extends State<GamificationWidget> {
@@ -1326,7 +1326,7 @@ class _GamificationWidgetState extends State<GamificationWidget> {
                                                     20
                                                 ? valueOrDefault(
                                                         currentUserDocument
-                                                            ?.totalaudio,
+                                                            ?.totalvideos,
                                                         0)
                                                     .toString()
                                                 : 'Completed!',
